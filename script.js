@@ -56,7 +56,7 @@ let lastScrollTop = 0;
 const header = document.querySelector('.header');
 
 window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
     if (scrollTop > 100) {
         header.style.borderBottomColor = 'rgba(0, 255, 65, 0.2)';
@@ -85,7 +85,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ==================== EFEITO PARALAX SUAVE ====================
 window.addEventListener('scroll', () => {
     const heroSection = document.querySelector('.hero');
-    const scrollPosition = window.pageYOffset;
+    const scrollPosition = window.scrollY;
 
     if (heroSection) {
         heroSection.style.backgroundPosition = `0 ${scrollPosition * 0.5}px`;
@@ -113,7 +113,7 @@ animateCounters();
 const addScrollClass = () => {
     const scrollDown = document.querySelector('.scroll-down');
     if (scrollDown) {
-        if (window.pageYOffset > 100) {
+        if (window.scrollY > 100) {
             scrollDown.style.opacity = '0';
             scrollDown.style.pointerEvents = 'none';
         } else {
@@ -125,16 +125,6 @@ const addScrollClass = () => {
 
 window.addEventListener('scroll', addScrollClass);
 
-// ==================== VALIDAÇÃO DE LINKS ====================
-document.querySelectorAll('.nav-link, .project-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        // Se o link começa com #, deixar o navegador lidar
-        if (!href.startsWith('#') && !href.startsWith('http') && href !== '#') {
-            // Aqui você pode adicionar tratamento para links internos
-        }
-    });
-});
 
 // ==================== EFEITO HOVER NOS CARDS ====================
 const cards = document.querySelectorAll('.tech-card, .project-card, .cert-card, .contact-card');
@@ -149,28 +139,6 @@ cards.forEach(card => {
     });
 });
 
-// ==================== ATUALIZAR LINKS DINÂMICOS ====================
-const updateDynamicLinks = () => {
-    // Atualizar links do GitHub
-    const githubLinks = document.querySelectorAll('a[href="https://github.com"]');
-    githubLinks.forEach(link => {
-        link.href = 'https://github.com/seuusuario'; // Substituir com seu usuário do GitHub
-    });
-
-    // Atualizar links do LinkedIn
-    const linkedinLinks = document.querySelectorAll('a[href="https://linkedin.com"]');
-    linkedinLinks.forEach(link => {
-        link.href = 'https://linkedin.com/in/seu-perfil'; // Substituir com seu perfil do LinkedIn
-    });
-
-    // Atualizar email
-    const emailLinks = document.querySelectorAll('a[href="mailto:seu.email@gmail.com"]');
-    emailLinks.forEach(link => {
-        link.href = 'mailto:seu.email@seu-provedor.com'; // Substituir com seu email
-    });
-};
-
-updateDynamicLinks();
 
 // ==================== LOADING SUAVE ====================
 window.addEventListener('load', () => {
@@ -219,3 +187,116 @@ animateOnScroll();
 // ==================== LOG PARA VERIFICAR CARREGAMENTO ====================
 console.log('Portfolio carregado com sucesso! 🚀');
 console.log('Desenvolvido com ❤️ por Bruno dos Anjos Santos');
+
+// ==================== LÓGICA DO FORMULÁRIO DE CONTATO ====================
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm && formStatus) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.btn-submit');
+            const originalBtnContent = submitBtn.innerHTML;
+            
+            // Alterar estado do botão para carregamento
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            
+            // Limpar status anterior
+            formStatus.style.display = 'none';
+            formStatus.className = 'form-status';
+            formStatus.innerHTML = '';
+
+            const formData = new FormData(contactForm);
+
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.status === 200) {
+                    formStatus.classList.add('success');
+                    formStatus.innerHTML = '<i class="fas fa-check-circle"></i> Mensagem enviada com sucesso! Entrarei em contato em breve. 🚀';
+                    formStatus.style.display = 'flex';
+                    contactForm.reset();
+                } else {
+                    formStatus.classList.add('error');
+                    formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message || 'Ocorreu um erro ao enviar.'}`;
+                    formStatus.style.display = 'flex';
+                }
+            } catch (error) {
+                formStatus.classList.add('error');
+                formStatus.innerHTML = '<i class="fas fa-wifi"></i> Erro de rede. Verifique sua conexão e tente novamente.';
+                formStatus.style.display = 'flex';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnContent;
+            }
+        });
+    }
+});
+
+// ==================== MATRIX RAIN BACKGROUND ====================
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('matrix-canvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    };
+    
+    resizeCanvas();
+    
+    // Caracteres estilo Matrix
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%""\'#&_(),.;:?!\\|{}<>[]^~';
+    const matrix = letters.split('');
+    
+    const fontSize = 16;
+    let columns = canvas.width / fontSize;
+    
+    let drops = [];
+    for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+    }
+    
+    function draw() {
+        // Fundo translúcido para rastro do código
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff41'; // Verde Neon
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+            const text = matrix[Math.floor(Math.random() * matrix.length)];
+            
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+    
+    setInterval(draw, 33);
+    
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        columns = canvas.width / fontSize;
+        drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+    });
+});
+
