@@ -59,10 +59,9 @@ window.addEventListener('scroll', () => {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
     if (scrollTop > 100) {
-        header.style.borderBottomColor = 'rgba(0, 255, 65, 0.2)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+        header.classList.add('scrolled');
     } else {
-        header.style.boxShadow = 'none';
+        header.classList.remove('scrolled');
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
@@ -149,15 +148,52 @@ window.addEventListener('load', () => {
 });
 
 // ==================== DETECTAR TEMA DO SISTEMA ====================
-const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 
-prefersColorScheme.addEventListener('change', (e) => {
-    if (e.matches) {
-        document.body.classList.add('dark-mode');
+// Preferência do sistema para modo CLARO (o padrão do CSS é escuro)
+const prefersLightScheme = window.matchMedia('(prefers-color-scheme: light)');
+
+function setTheme(isLight) {
+    if (isLight) {
+        document.body.classList.add('light-mode');
+        if (themeIcon) {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+        localStorage.setItem('theme', 'light');
     } else {
-        document.body.classList.remove('dark-mode');
+        document.body.classList.remove('light-mode');
+        if (themeIcon) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
+// Inicializar tema baseado na preferência salva ou do sistema
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    setTheme(savedTheme === 'light');
+} else {
+    setTheme(prefersLightScheme.matches);
+}
+
+// Ouvir mudanças no sistema
+prefersLightScheme.addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+        setTheme(e.matches);
     }
 });
+
+// Clique no botão de toggle
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const isLight = !document.body.classList.contains('light-mode');
+        setTheme(isLight);
+    });
+}
 
 // ==================== ADICIONAR ANIMAÇÃO DE ENTRADA NA PÁGINA ====================
 window.addEventListener('load', () => {
