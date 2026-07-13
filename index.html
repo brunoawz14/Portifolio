@@ -5,22 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bruno dos Anjos Santos - Desenvolvedor Back-End</title>
-    
-    <!-- SEO & Meta Tags -->
     <meta name="description" content="Portfólio de Bruno dos Anjos Santos, Desenvolvedor Back-End com foco em Java e Spring Boot.">
     <meta name="author" content="Bruno dos Anjos Santos">
-    
-    <!-- Open Graph (WhatsApp, LinkedIn) -->
     <meta property="og:title" content="Bruno dos Anjos Santos - Desenvolvedor Back-End">
     <meta property="og:description" content="Confira meu portfólio, projetos e habilidades em desenvolvimento de software.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://seusite.com/assets/preview.png">
-    <!-- Adicione o link real da imagem abaixo quando hospedar o site (crie um arquivo preview.png) -->
-    <!-- <meta property="og:image" content="https://seusite.com/assets/preview.png"> -->
     
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.png" />
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -65,13 +61,17 @@
         <canvas id="matrix-canvas"></canvas>
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title">Bruno dos Anjos Santos</h1>
-                <h2 class="hero-subtitle">Desenvolvedor Back-End em Formação</h2>
+                <p class="hero-eyebrow">Olá, eu sou</p>
+                <h1 class="hero-title">Bruno dos Anjos<br>Santos<span class="title-dot">.</span></h1>
+                <div class="hero-typing-wrapper">
+                    <span class="hero-typing-prefix">&gt;&nbsp;</span>
+                    <h2 class="hero-subtitle" id="typing-text"></h2>
+                    <span class="hero-cursor">|</span>
+                </div>
                 <p class="hero-description">
-                    Sou estudante do 3º ano do Ensino Médio com habilitação técnica em Administração
-                    e atualmente curso Técnico em Desenvolvimento de Sistemas. Tenho interesse em desenvolvimento
-                    Back-End e busco aprimorar minhas habilidades na criação de soluções utilizando Java, Spring Boot
-                    e outras tecnologias.
+                    Estudante do 3º ano do Ensino Médio com foco em desenvolvimento
+                    Back-End. Apaixonado por criar soluções robustas e escaláveis
+                    com <span class="highlight">Java</span>, <span class="highlight">Spring Boot</span> e boas práticas de engenharia de software.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">
@@ -81,15 +81,47 @@
                         <i class="fas fa-download"></i> Baixar Currículo
                     </a>
                 </div>
+                <div class="hero-social">
+                    <a href="https://github.com/brunoawz14" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/bruno-anjos-santos/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:brunoanjossantos21@gmail.com" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
             <div class="hero-image">
-                <div class="floating-card">
-                    <div class="code-snippet">
-                        &lt;developer&gt;<br />
-                        &nbsp;&nbsp;&lt;name&gt;Bruno&lt;/name&gt;<br />
-                        &nbsp;&nbsp;&lt;role&gt;Back-End&lt;/role&gt;<br />
-                        &nbsp;&nbsp;&lt;passion&gt;Technology&lt;/passion&gt;<br />
-                        &lt;/developer&gt;
+                <div class="terminal-card">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <span class="terminal-title">bruno@dev:~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-cmd">cat developer.json</span>
+                        </div>
+                        <pre class="terminal-output">{
+  <span class="json-key">"name"</span>: <span class="json-str">"Bruno"</span>,
+  <span class="json-key">"role"</span>: <span class="json-str">"Back-End Dev"</span>,
+  <span class="json-key">"stack"</span>: [
+    <span class="json-str">"Java"</span>,
+    <span class="json-str">"Spring Boot"</span>,
+    <span class="json-str">"SQL"</span>
+  ],
+  <span class="json-key">"status"</span>: <span class="json-str">"Open to work"</span>
+}</pre>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-cursor">_</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,6 +131,35 @@
             <div class="arrow">
                 <span></span>
                 <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2">0</span>
+                    <span class="stat-label">Projetos</span>
+                    <span class="stat-detail">No GitHub</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">Certificações</span>
+                    <span class="stat-detail">Alura</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="40">0</span>
+                    <span class="stat-suffix">h+</span>
+                    <span class="stat-label">De Estudo</span>
+                    <span class="stat-detail">Em Spring Boot</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="7">0</span>
+                    <span class="stat-label">Tecnologias</span>
+                    <span class="stat-detail">No Stack</span>
+                </div>
             </div>
         </div>
     </section>
@@ -155,66 +216,103 @@
             <div class="technologies-grid">
                 <!-- Front-End -->
                 <div class="tech-category">
-                    <h3 class="category-title">Front-End</h3>
+                    <h3 class="category-title"><i class="fas fa-palette"></i> Front-End</h3>
                     <div class="tech-cards">
                         <div class="tech-card html-card">
                             <div class="tech-icon-wrapper">
                                 <i class="fab fa-html5"></i>
                             </div>
-                            <span class="tech-name">HTML</span>
+                            <div class="tech-info">
+                                <span class="tech-name">HTML</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="80"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tech-card css-card">
                             <div class="tech-icon-wrapper">
                                 <i class="fab fa-css3-alt"></i>
                             </div>
-                            <span class="tech-name">CSS</span>
+                            <div class="tech-info">
+                                <span class="tech-name">CSS</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-card php-card">
+                            <div class="tech-icon-wrapper">
+                                <i class="fab fa-php"></i>
+                            </div>
+                            <div class="tech-info">
+                                <span class="tech-name">PHP</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="25"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Back-End -->
                 <div class="tech-category">
-                    <h3 class="category-title">Back-End</h3>
+                    <h3 class="category-title"><i class="fas fa-server"></i> Back-End</h3>
                     <div class="tech-cards">
                         <div class="tech-card java-card">
                             <div class="tech-icon-wrapper">
                                 <i class="fab fa-java"></i>
                             </div>
-                            <span class="tech-name">Java</span>
+                            <div class="tech-info">
+                                <span class="tech-name">Java</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="75"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="tech-card spring-card">
                             <div class="tech-icon-wrapper">
                                 <i class="fas fa-leaf"></i>
                             </div>
-                            <span class="tech-name">Spring Boot</span>
+                            <div class="tech-info">
+                                <span class="tech-name">Spring Boot</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="70"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mobile -->
                 <div class="tech-category">
-                    <h3 class="category-title">Mobile</h3>
+                    <h3 class="category-title"><i class="fas fa-mobile-alt"></i> Mobile</h3>
                     <div class="tech-cards">
                         <div class="tech-card maui-card">
                             <div class="tech-icon-wrapper">
-                                <i class="fas fa-mobile-alt"></i>
+                                <i class="fab fa-microsoft"></i>
                             </div>
-                            <span class="tech-name">.NET MAUI</span>
+                            <div class="tech-info">
+                                <span class="tech-name">.NET MAUI</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="60"></div>
+                                </div>
+                            </div>
                         </div>
-
-
-
                     </div>
                 </div>
-                <!-- Banco de Dados -->
                 <div class="tech-category">
-                    <h3 class="category-title">Database</h3>
+                    <h3 class="category-title"><i class="fas fa-database"></i> Database</h3>
                     <div class="tech-cards">
                         <div class="tech-card sql-card">
                             <div class="tech-icon-wrapper">
                                 <i class="fas fa-database"></i>
                             </div>
-                            <span class="tech-name">SQL</span>
+                            <div class="tech-info">
+                                <span class="tech-name">SQL</span>
+                                <div class="tech-bar">
+                                    <div class="tech-bar-fill" data-level="65"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,36 +340,51 @@
             <h2 class="section-title">Projetos</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-calendar-check"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/brunoawz14/MauiAppCadastroEventos" target="_blank" rel="noopener noreferrer" class="project-social" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
                     </div>
                     <h3>Cadastro de Eventos</h3>
-                    <p class="project-tech">Tecnologia: <strong>.NET MAUI</strong></p>
                     <p class="project-description">
                         Aplicativo mobile para gerenciamento e cadastro de eventos.
-                        Desenvolvido com .NET MAUI.
+                        Interface responsiva com CRUD completo.
                     </p>
-                    <a href="https://github.com/brunoawz14/MauiAppCadastroEventos" class="project-link">
-                        <i class="fab fa-github"></i> Ver no GitHub
-                    </a>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">.NET MAUI</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">XAML</span>
+                    </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-coffee"></i>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/brunoawz14/Origin-E-commerce" target="_blank" rel="noopener noreferrer" class="project-social" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
                     </div>
                     <h3>E-Commerce Origin</h3>
-                    <p class="project-tech">Tecnologia: <strong>Java & Spring Boot</strong></p>
                     <p class="project-description">
-                        Api de E-commerce com CRUD completo, authentication e authorization.
-                        Desenvolvido com Java e Spring Boot.
+                        API RESTful de E-commerce com CRUD completo, autenticação,
+                        autorização e documentação com Swagger.
                     </p>
-                    <a href="https://github.com/brunoawz14/Origin-E-commerce" class="project-link">
-                        <i class="fab fa-github"></i> Ver no GitHub
-                    </a>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Swagger</span>
+                    </div>
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -281,45 +394,57 @@
         <div class="container">
             <h2 class="section-title">Certificações</h2>
             <div class="certifications-grid">
-                <div class="cert-card" onclick="window.open('https://cursos.alura.com.br/certificate/92e9032c-735d-4b7e-8ba2-688729bd6e0c', '_blank')" style="cursor: pointer;" title="Ver Certificado">
-                    <div class="cert-header">
-                        <i class="fas fa-certificate"></i>
-                        <span class="cert-year">2026</span>
+                <a href="https://cursos.alura.com.br/certificate/92e9032c-735d-4b7e-8ba2-688729bd6e0c" target="_blank" rel="noopener noreferrer" class="cert-card" title="Ver Certificado">
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
                     </div>
-                    <h3>Spring Boot 3: desenvolva uma API Rest em Java</h3>
-                    <p class="cert-institution">Alura</p>
-                    <p class="cert-description">Carga horária: 10h</p>
-                </div>
+                    <div class="cert-content">
+                        <span class="cert-year">2026</span>
+                        <h3>Spring Boot 3: desenvolva uma API Rest em Java</h3>
+                        <p class="cert-institution">Alura</p>
+                        <p class="cert-description">10h de carga horária</p>
+                    </div>
+                    <i class="fas fa-external-link-alt cert-arrow"></i>
+                </a>
 
-                <div class="cert-card" onclick="window.open('https://cursos.alura.com.br/certificate/fb53a008-8bfa-4be9-beff-270607171879', '_blank')" style="cursor: pointer;" title="Ver Certificado">
-                    <div class="cert-header">
-                        <i class="fas fa-certificate"></i>
-                        <span class="cert-year">2026</span>
+                <a href="https://cursos.alura.com.br/certificate/fb53a008-8bfa-4be9-beff-270607171879" target="_blank" rel="noopener noreferrer" class="cert-card" title="Ver Certificado">
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
                     </div>
-                    <h3>Spring Boot 3: aplique boas práticas e proteja uma API</h3>
-                    <p class="cert-institution">Alura</p>
-                    <p class="cert-description">Carga horária: 12h</p>
-                </div>
+                    <div class="cert-content">
+                        <span class="cert-year">2026</span>
+                        <h3>Spring Boot 3: aplique boas práticas e proteja uma API</h3>
+                        <p class="cert-institution">Alura</p>
+                        <p class="cert-description">12h de carga horária</p>
+                    </div>
+                    <i class="fas fa-external-link-alt cert-arrow"></i>
+                </a>
 
-                <div class="cert-card" onclick="window.open('https://cursos.alura.com.br/certificate/14809f08-55ef-4560-a9c0-c9cb395ca38f', '_blank')" style="cursor: pointer;" title="Ver Certificado">
-                    <div class="cert-header">
-                        <i class="fas fa-certificate"></i>
-                        <span class="cert-year">2026</span>
+                <a href="https://cursos.alura.com.br/certificate/14809f08-55ef-4560-a9c0-c9cb395ca38f" target="_blank" rel="noopener noreferrer" class="cert-card" title="Ver Certificado">
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
                     </div>
-                    <h3>Spring Boot 3: documente, teste e prepare uma API</h3>
-                    <p class="cert-institution">Alura</p>
-                    <p class="cert-description">Carga horária: 10h</p>
-                </div>
+                    <div class="cert-content">
+                        <span class="cert-year">2026</span>
+                        <h3>Spring Boot 3: documente, teste e prepare uma API</h3>
+                        <p class="cert-institution">Alura</p>
+                        <p class="cert-description">10h de carga horária</p>
+                    </div>
+                    <i class="fas fa-external-link-alt cert-arrow"></i>
+                </a>
 
-                <div class="cert-card" onclick="window.open('https://cursos.alura.com.br/certificate/2bc98e51-fe74-4d78-8de3-13a95a2450ab', '_blank')" style="cursor: pointer;" title="Ver Certificado">
-                    <div class="cert-header">
-                        <i class="fas fa-certificate"></i>
-                        <span class="cert-year">2026</span>
+                <a href="https://cursos.alura.com.br/certificate/2bc98e51-fe74-4d78-8de3-13a95a2450ab" target="_blank" rel="noopener noreferrer" class="cert-card" title="Ver Certificado">
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
                     </div>
-                    <h3>Git e GitHub: compartilhando e colaborando</h3>
-                    <p class="cert-institution">Alura</p>
-                    <p class="cert-description">Carga horária: 8h</p>
-                </div>
+                    <div class="cert-content">
+                        <span class="cert-year">2026</span>
+                        <h3>Git e GitHub: compartilhando e colaborando</h3>
+                        <p class="cert-institution">Alura</p>
+                        <p class="cert-description">8h de carga horária</p>
+                    </div>
+                    <i class="fas fa-external-link-alt cert-arrow"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -367,7 +492,6 @@
                 Não hesite em enviar uma mensagem ou conectar-se nas redes sociais!
             </p>
             <div class="contact-container">
-                <!-- Coluna da Esquerda: Métodos de Contato -->
                 <div class="contact-info">
                     <a href="https://github.com/brunoawz14" class="contact-card" target="_blank"
                         rel="noopener noreferrer">
@@ -396,14 +520,10 @@
                     </a>
                 </div>
 
-                <!-- Coluna da Direita: Formulário de Contato -->
                 <div class="contact-form-wrapper">
                     <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
                         class="contact-form">
-                        <!-- Chave de acesso Web3Forms (Substitua pelo seu token obtido gratuitamente) -->
                         <input type="hidden" name="access_key" value="db510680-e2d3-4c65-83f8-66a4d70d3001">
-
-                        <!-- Anti-spam honeypot -->
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
                         <div class="form-group">

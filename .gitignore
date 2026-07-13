@@ -1,0 +1,20 @@
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# MiMoCode
+.mimocode/
+
+# Dependencies (if any in future)
+node_modules/
+
+# Logs
+*.log
