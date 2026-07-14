@@ -7,6 +7,7 @@ const ADMIN_SALT = 'b4uno_p0rtf0l10_2026';
 const ADMIN_PASSWORD_HASH = '29b523a8a82d25f43dbe346fb83ca014d27c070c80fac1042d056f0fc01eb230';
 const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutos
 let data = null;
+let adminPassword = null; // Senha em memoria apenas — nao fica em storage
 
 // Hash SHA-256 com salt
 async function sha256(message) {
@@ -557,12 +558,40 @@ async function saveToGitHub() {
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
 
   try {
+    let password = adminPassword;
+    if (!password) {
+      password = prompt('Sessao restaurada. Digite a senha para salvar:');
+      if (!password) {
+        showToast('Cancelado.');
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        return;
+      }
+      const hash = await sha256(password);
+      if (!Security.timingSafeEqual(hash, ADMIN_PASSWORD_HASH)) {
+        showToast('Senha incorreta.');
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        return;
+      }
+      adminPassword = password;
+    }
+    const ts = Date.now();
+    const encoder = new TextEncoder();
+    const nonceBuffer = await crypto.subtle.digest(
+      'SHA-256',
+      encoder.encode(ADMIN_SALT + String(ts) + password)
+    );
+    const nonce = Array.from(new Uint8Array(nonceBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+
     const resp = await fetch('/api/update-data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        password: sessionStorage.getItem('admin-password'),
-        data: data
+        password: password,
+        data: data,
+        nonce: nonce,
+        ts: ts
       })
     });
 
@@ -617,13 +646,13 @@ function checkSession() {
 function startSession(password) {
   sessionStorage.setItem('admin-logged-in', 'true');
   sessionStorage.setItem('admin-login-time', Date.now().toString());
-  sessionStorage.setItem('admin-password', password);
+  adminPassword = password;
 }
 
 function endSession() {
   sessionStorage.removeItem('admin-logged-in');
   sessionStorage.removeItem('admin-login-time');
-  sessionStorage.removeItem('admin-password');
+  adminPassword = null;
 }
 
 // ==================== INIT ====================
@@ -729,6 +758,10 @@ async function doLogin() {
 function showAdminPanel() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-panel').style.display = 'block';
+
+  if (!adminPassword) {
+    showToast('Sessao restaurada. Sera pedida a senha ao salvar.');
+  }
 
   // Load data: localStorage first, then fetch from site
   const stored = loadFromStorage();

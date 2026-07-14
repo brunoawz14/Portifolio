@@ -16,7 +16,7 @@ function timingSafeEqual(a, b) {
   return result === 0;
 }
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   // --- CORS restrito ao proprio dominio ---
   const origin = req.headers.origin || '';
   const allowed = origin === SITE_URL;
@@ -27,7 +27,10 @@ module.exports = async function handler(req, res) {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method === 'OPTIONS') {
+    if (!allowed) return res.status(403).json({ error: 'Acesso negado.' });
+    return res.status(200).end();
+  }
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   if (!allowed) {

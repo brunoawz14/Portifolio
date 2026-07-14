@@ -120,12 +120,31 @@ const Security = {
       });
     }
 
-    // Typing phrases
+    // Typing phrases — no HTML escape needed (used via textContent)
     if (Array.isArray(data.typingPhrases)) {
-      data.typingPhrases = data.typingPhrases.map(p => s(p, 80));
+      data.typingPhrases = data.typingPhrases.map(p => this.clamp(p, 80));
     }
 
     return data;
+  },
+
+  // Retorna dados brutos (sem escapeHtml) para titulo/meta tags
+  getRawData(data) {
+    if (!data || !data.profile) return data;
+    const raw = JSON.parse(JSON.stringify(data));
+    if (raw.profile) {
+      raw.profile.name = this.unescapeHtml(raw.profile.name);
+      raw.profile.role = this.unescapeHtml(raw.profile.role);
+      raw.profile.description = this.unescapeHtml(raw.profile.description);
+    }
+    return raw;
+  },
+
+  // Reverte entidades HTML
+  unescapeHtml(str) {
+    if (typeof str !== 'string') return '';
+    const map = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#x27;': "'", '&#x2F;': '/' };
+    return str.replace(/&amp;|&lt;|&gt;|&quot;|&#x27;|&#x2F;/g, m => map[m]);
   },
 
   // Gera um token simples para o admin

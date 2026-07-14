@@ -27,25 +27,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== SCROLL ANIMATIONS ====================
+// Observer inicial para elementos hardcoded no HTML.
+// O data-loader.js cria seu proprio observer apos renderizar.
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -80px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
+let scrollObserver = null;
 
-document.querySelectorAll('.tech-card, .project-card, .cert-card, .timeline-item, .contact-card, .stat-item')
-    .forEach(element => {
-        element.style.opacity = '0';
-        observer.observe(element);
-    });
+function initScrollObserver() {
+    if (scrollObserver) return; // evita duplicar
+    scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                scrollObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.tech-card, .project-card, .cert-card, .timeline-item, .contact-card, .stat-item')
+        .forEach(element => {
+            element.style.opacity = '0';
+            scrollObserver.observe(element);
+        });
+}
+
+// So inicia se data-loader NAO estiver presente (fallback hardcoded)
+if (!document.querySelector('.stats-grid')?.children.length) {
+    document.addEventListener('DOMContentLoaded', initScrollObserver);
+}
 
 // ==================== STICKY HEADER ====================
 const header = document.querySelector('.header');
@@ -129,22 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==================== COUNTER ANIMATION ====================
-const animateCounters = () => {
-    const counters = document.querySelectorAll('.stat-number');
-
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.getAttribute('data-target'));
-                animateCounter(entry.target, target);
-                counterObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    counters.forEach(counter => counterObserver.observe(counter));
-};
-
+// Observa contadores hardcoded no HTML.
+// data-loader.js tem sua propria reinitCounters() para dados dinamicos.
 function animateCounter(element, target) {
     let current = 0;
     const increment = target / 40;
@@ -162,26 +160,38 @@ function animateCounter(element, target) {
     }, stepTime);
 }
 
-animateCounters();
+const animateCounters = () => {
+    const counters = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                animateCounter(entry.target, target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(counter => counterObserver.observe(counter));
+};
+
+document.addEventListener('DOMContentLoaded', animateCounters);
 
 // ==================== TECH BAR ANIMATION ====================
 const animateTechBars = () => {
     const bars = document.querySelectorAll('.tech-bar-fill');
-
     const barObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const level = entry.target.getAttribute('data-level');
-                entry.target.style.width = level + '%';
+                const level = entry.target.getAttribute('data-target') || entry.target.getAttribute('data-level');
+                entry.target.style.width = (level || 0) + '%';
                 barObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.5 });
-
     bars.forEach(bar => barObserver.observe(bar));
 };
 
-animateTechBars();
+document.addEventListener('DOMContentLoaded', animateTechBars);
 
 // ==================== SCROLL DOWN INDICATOR ====================
 const addScrollClass = () => {
@@ -319,6 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
         drops[x] = 1;
     }
 
+    let matrixInterval = null;
+
     function draw() {
         ctx.fillStyle = 'rgba(10, 10, 10, 0.06)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -337,7 +349,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    setInterval(draw, 40);
+    matrixInterval = setInterval(draw, 40);
+
+    // Cleanup se a pagina for descarregada
+    window.addEventListener('beforeunload', () => {
+        if (matrixInterval) clearInterval(matrixInterval);
+    });
 
     window.addEventListener('resize', () => {
         resizeCanvas();
