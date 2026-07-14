@@ -121,19 +121,6 @@
           "color": "#336791"
         }
       ]
-    },
-    {
-      "category": "DevOps",
-      "icon": "fas fa-cogs",
-      "items": [
-        {
-          "name": "Docker",
-          "icon": "fab fa-docker",
-          "level": 50,
-          "colorClass": "tech-card",
-          "color": "#2496ed"
-        }
-      ]
     }
   ],
   "projects": [
@@ -158,6 +145,16 @@
         "Spring Boot",
         "SQL",
         "Swagger"
+      ]
+    },
+    {
+      "title": "teste IA",
+      "description": "",
+      "icon": "fas fa-code",
+      "github": "",
+      "tags": [
+        "JAVA",
+        "C#"
       ]
     }
   ],
