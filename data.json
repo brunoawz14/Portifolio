@@ -146,16 +146,6 @@
         "SQL",
         "Swagger"
       ]
-    },
-    {
-      "title": "teste IA",
-      "description": "",
-      "icon": "fas fa-code",
-      "github": "",
-      "tags": [
-        "JAVA",
-        "C#"
-      ]
     }
   ],
   "certifications": [
