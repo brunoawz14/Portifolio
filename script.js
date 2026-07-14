@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingElement = document.getElementById('typing-text');
     if (!typingElement) return;
 
-    const phrases = [
+    const phrases = window._typingPhrases || [
         'Desenvolvedor Back-End',
         'Java & Spring Boot',
         'Construindo APIs robustas',
@@ -278,7 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactForm.reset();
                 } else {
                     formStatus.classList.add('error');
-                    formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${data.message || 'Ocorreu um erro ao enviar.'}`;
+                    const safeMsg = window.Security ? Security.escapeHtml(data.message) : (data.message || 'Ocorreu um erro ao enviar.');
+                    formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${safeMsg}`;
                     formStatus.style.display = 'flex';
                 }
             } catch (error) {

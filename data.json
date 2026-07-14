@@ -1,0 +1,132 @@
+{
+  "profile": {
+    "name": "Bruno dos Anjos Santos",
+    "shortName": "Bruno",
+    "role": "Desenvolvedor Back-End",
+    "roleEn": "Back-End Developer",
+    "description": "Estudante do 3º ano do Ensino Médio com foco em desenvolvimento Back-End. Apaixonado por criar soluções robustas e escaláveis com Java, Spring Boot e boas práticas de engenharia de software.",
+    "about": [
+      "Meu nome é Bruno dos Anjos Santos e tenho 17 anos. Sou estudante da Etec, cursando o 3º ano do Ensino Médio integrado ao Técnico em Administração e concomitantemente o Técnico em Desenvolvimento de Sistemas.",
+      "Desde cedo, tenho uma paixão genuína por tecnologia e programação. Gosto de resolver problemas complexos através do código e estou constantemente aprimorando minhas habilidades. Meu objetivo profissional é me consolidar como desenvolvedor Back-End, criando soluções robustas e escaláveis.",
+      "Sou dedicado, proativo e sempre busco aprender novas tecnologias e metodologias. Acredito que a constante evolução é fundamental para se manter relevante na área de desenvolvimento."
+    ],
+    "info": {
+      "age": "17 anos",
+      "education": "Ensino Médio + Técnico",
+      "specialization": "Back-End Development",
+      "status": "Disponível para Oportunidades"
+    },
+    "social": {
+      "github": "https://github.com/brunoawz14",
+      "linkedin": "https://www.linkedin.com/in/bruno-anjos-santos/",
+      "email": "brunoanjossantos21@gmail.com"
+    }
+  },
+  "stats": [
+    { "label": "Projetos", "target": 2, "detail": "No GitHub", "suffix": "" },
+    { "label": "Certificações", "target": 4, "detail": "Alura", "suffix": "" },
+    { "label": "De Estudo", "target": 40, "detail": "Em Spring Boot", "suffix": "h+" },
+    { "label": "Tecnologias", "target": 7, "detail": "No Stack", "suffix": "" }
+  ],
+  "technologies": [
+    {
+      "category": "Front-End",
+      "icon": "fas fa-palette",
+      "items": [
+        { "name": "HTML", "icon": "fab fa-html5", "level": 80, "colorClass": "html-card", "color": "#e34f26" },
+        { "name": "CSS", "icon": "fab fa-css3-alt", "level": 70, "colorClass": "css-card", "color": "#1572b6" },
+        { "name": "PHP", "icon": "fab fa-php", "level": 25, "colorClass": "php-card", "color": "#777bb4" }
+      ]
+    },
+    {
+      "category": "Back-End",
+      "icon": "fas fa-server",
+      "items": [
+        { "name": "Java", "icon": "fab fa-java", "level": 75, "colorClass": "java-card", "color": "#ed8b00" },
+        { "name": "Spring Boot", "icon": "fas fa-leaf", "level": 70, "colorClass": "spring-card", "color": "#6db33f" }
+      ]
+    },
+    {
+      "category": "Mobile",
+      "icon": "fas fa-mobile-alt",
+      "items": [
+        { "name": ".NET MAUI", "icon": "fab fa-microsoft", "level": 60, "colorClass": "maui-card", "color": "#512bd4" }
+      ]
+    },
+    {
+      "category": "Database",
+      "icon": "fas fa-database",
+      "items": [
+        { "name": "SQL", "icon": "fas fa-database", "level": 65, "colorClass": "sql-card", "color": "#336791" }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Cadastro de Eventos",
+      "description": "Aplicativo mobile para gerenciamento e cadastro de eventos. Interface responsiva com CRUD completo.",
+      "icon": "fas fa-terminal",
+      "github": "https://github.com/brunoawz14/MauiAppCadastroEventos",
+      "tags": [".NET MAUI", "C#", "XAML"]
+    },
+    {
+      "title": "E-Commerce Origin",
+      "description": "API RESTful de E-commerce com CRUD completo, autenticação, autorização e documentação com Swagger.",
+      "icon": "fas fa-shopping-cart",
+      "github": "https://github.com/brunoawz14/Origin-E-commerce",
+      "tags": ["Java", "Spring Boot", "SQL", "Swagger"]
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Spring Boot 3: desenvolva uma API Rest em Java",
+      "institution": "Alura",
+      "year": "2026",
+      "hours": "10h",
+      "url": "https://cursos.alura.com.br/certificate/92e9032c-735d-4b7e-8ba2-688729bd6e0c"
+    },
+    {
+      "title": "Spring Boot 3: aplique boas práticas e proteja uma API",
+      "institution": "Alura",
+      "year": "2026",
+      "hours": "12h",
+      "url": "https://cursos.alura.com.br/certificate/fb53a008-8bfa-4be9-beff-270607171879"
+    },
+    {
+      "title": "Spring Boot 3: documente, teste e prepare uma API",
+      "institution": "Alura",
+      "year": "2026",
+      "hours": "10h",
+      "url": "https://cursos.alura.com.br/certificate/14809f08-55ef-4560-a9c0-c9cb395ca38f"
+    },
+    {
+      "title": "Git e GitHub: compartilhando e colaborando",
+      "institution": "Alura",
+      "year": "2026",
+      "hours": "8h",
+      "url": "https://cursos.alura.com.br/certificate/2bc98e51-fe74-4d78-8de3-13a95a2450ab"
+    }
+  ],
+  "education": [
+    {
+      "title": "Ensino Médio Integrado ao Técnico em Administração",
+      "institution": "Etec - Escola Técnica Estadual",
+      "year": "2024 - 2026 - Em Andamento",
+      "description": "Curso integrado que combinava ensino médio regular com formação técnica em administração, proporcionando base sólida em gestão e negócios."
+    },
+    {
+      "title": "Técnico em Desenvolvimento de Sistemas",
+      "institution": "Etec - Escola Técnica Estadual",
+      "year": "2025 - 2026 - Em Andamento",
+      "description": "Curso técnico focado em desenvolvimento de software, com disciplinas em programação, engenharia de software, bancos de dados e projetos práticos."
+    }
+  ],
+  "typingPhrases": [
+    "Desenvolvedor Back-End",
+    "Java & Spring Boot",
+    "Construindo APIs robustas",
+    "Aprendendo sempre mais",
+    "Back-End Developer",
+    "REST APIs & Microservices"
+  ]
+}

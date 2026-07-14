@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Portfólio</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: http:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-box">
+      <div class="lock-icon"><i class="fas fa-shield-halved"></i></div>
+      <h1>Painel Admin</h1>
+      <p>Digite a senha para acessar o painel de gerenciamento.</p>
+      <div class="form-group">
+        <input type="password" id="password-input" placeholder="••••••••" autofocus>
+      </div>
+      <button class="btn btn-primary" id="login-btn">
+        <i class="fas fa-arrow-right-to-bracket"></i> Entrar
+      </button>
+      <div class="login-error" id="login-error">Senha incorreta. Tente novamente.</div>
+    </div>
+  </div>
+
+  <!-- PAINEL ADMIN -->
+  <div class="admin-panel" id="admin-panel">
+    <!-- HEADER -->
+    <div class="admin-header">
+      <h1><i class="fas fa-terminal"></i> Admin Panel</h1>
+      <div class="admin-header-actions">
+        <button class="btn btn-success btn-sm" id="save-github-btn" title="Salvar direto no GitHub">
+          <i class="fas fa-cloud-arrow-up"></i> Salvar no GitHub
+        </button>
+        <button class="btn btn-outline btn-sm" id="export-btn" title="Baixar data.json atualizado">
+          <i class="fas fa-download"></i> Exportar JSON
+        </button>
+        <button class="btn btn-outline btn-sm" id="preview-btn" title="Visualizar JSON gerado">
+          <i class="fas fa-eye"></i> Preview
+        </button>
+        <button class="btn btn-outline btn-sm" id="logout-btn" title="Sair do painel">
+          <i class="fas fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="admin-body">
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="techs">
+          <i class="fas fa-code"></i> Tecnologias <span class="count" id="tech-count">7</span>
+        </button>
+        <button class="tab-btn" data-tab="certs">
+          <i class="fas fa-award"></i> Certificados <span class="count" id="cert-count">4</span>
+        </button>
+        <button class="tab-btn" data-tab="projects">
+          <i class="fas fa-folder-open"></i> Projetos <span class="count" id="project-count">2</span>
+        </button>
+        <button class="tab-btn" data-tab="profile">
+          <i class="fas fa-user"></i> Perfil
+        </button>
+        <button class="tab-btn" data-tab="stats">
+          <i class="fas fa-chart-bar"></i> Stats
+        </button>
+      </div>
+
+      <!-- TAB: TECNOLOGIAS -->
+      <div class="tab-content active" id="tab-techs">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h2>Tecnologias & Stacks</h2>
+          <button class="btn btn-success btn-sm" id="add-tech-btn">
+            <i class="fas fa-plus"></i> Nova Tecnologia
+          </button>
+        </div>
+        <div class="item-list" id="tech-list"></div>
+      </div>
+
+      <!-- TAB: CERTIFICADOS -->
+      <div class="tab-content" id="tab-certs">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h2>Certificados</h2>
+          <button class="btn btn-success btn-sm" id="add-cert-btn">
+            <i class="fas fa-plus"></i> Novo Certificado
+          </button>
+        </div>
+        <div class="item-list" id="cert-list"></div>
+      </div>
+
+      <!-- TAB: PROJETOS -->
+      <div class="tab-content" id="tab-projects">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h2>Projetos</h2>
+          <button class="btn btn-success btn-sm" id="add-project-btn">
+            <i class="fas fa-plus"></i> Novo Projeto
+          </button>
+        </div>
+        <div class="item-list" id="project-list"></div>
+      </div>
+
+      <!-- TAB: PERFIL -->
+      <div class="tab-content" id="tab-profile">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h2>Informações do Perfil</h2>
+        </div>
+        <div class="card" id="profile-form"></div>
+      </div>
+
+      <!-- TAB: STATS -->
+      <div class="tab-content" id="tab-stats">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h2>Estatísticas</h2>
+        </div>
+        <div class="card" id="stats-form"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Adicionar/Editar Tecnologia -->
+  <div class="modal-overlay" id="tech-modal">
+    <div class="modal">
+      <h2><i class="fas fa-code" style="color:var(--admin-primary)"></i> <span id="tech-modal-title">Nova Tecnologia</span></h2>
+      <input type="hidden" id="tech-edit-index" value="-1">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" id="tech-name" placeholder="Ex: React, Python, Docker...">
+      </div>
+      <div class="form-group">
+        <label>Categoria</label>
+        <select id="tech-category">
+          <option value="Front-End">Front-End</option>
+          <option value="Back-End">Back-End</option>
+          <option value="Mobile">Mobile</option>
+          <option value="Database">Database</option>
+          <option value="DevOps">DevOps</option>
+          <option value="Other">Outra</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ícone (Font Awesome)</label>
+          <input type="text" id="tech-icon" placeholder="Ex: fab fa-react">
+        </div>
+        <div class="form-group">
+          <label>Cor (#hex)</label>
+          <input type="color" id="tech-color" value="#00ff41" style="height:44px;padding:4px;">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Nível de Proficiência</label>
+        <div class="level-slider">
+          <input type="range" id="tech-level" min="5" max="100" value="50">
+          <span class="level-value" id="tech-level-display">50%</span>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline btn-sm" id="tech-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="tech-save" style="width:auto;">
+          <i class="fas fa-check"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Adicionar/Editar Certificado -->
+  <div class="modal-overlay" id="cert-modal">
+    <div class="modal">
+      <h2><i class="fas fa-award" style="color:var(--admin-primary)"></i> <span id="cert-modal-title">Novo Certificado</span></h2>
+      <input type="hidden" id="cert-edit-index" value="-1">
+      <div class="form-group">
+        <label>Título do Curso</label>
+        <input type="text" id="cert-title" placeholder="Ex: Spring Boot 3: Desenvolva uma API Rest">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Instituição</label>
+          <input type="text" id="cert-institution" placeholder="Ex: Alura">
+        </div>
+        <div class="form-group">
+          <label>Ano</label>
+          <input type="text" id="cert-year" placeholder="Ex: 2026">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Carga Horária</label>
+          <input type="text" id="cert-hours" placeholder="Ex: 10h">
+        </div>
+        <div class="form-group">
+          <label>URL do Certificado</label>
+          <input type="url" id="cert-url" placeholder="https://...">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline btn-sm" id="cert-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="cert-save" style="width:auto;">
+          <i class="fas fa-check"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Adicionar/Editar Projeto -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal">
+      <h2><i class="fas fa-folder-open" style="color:var(--admin-primary)"></i> <span id="project-modal-title">Novo Projeto</span></h2>
+      <input type="hidden" id="project-edit-index" value="-1">
+      <div class="form-group">
+        <label>Nome do Projeto</label>
+        <input type="text" id="project-title" placeholder="Ex: E-Commerce Origin">
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea id="project-description" placeholder="Descreva brevemente o projeto..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ícone (Font Awesome)</label>
+          <input type="text" id="project-icon" placeholder="Ex: fas fa-shopping-cart">
+        </div>
+        <div class="form-group">
+          <label>Link GitHub</label>
+          <input type="url" id="project-github" placeholder="https://github.com/...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Tags (pressione Enter para adicionar)</label>
+        <div class="tag-input-wrapper">
+          <input type="text" id="project-tag-input" placeholder="Ex: Java">
+          <button class="btn btn-outline btn-sm" id="add-tag-btn"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="tags-container" id="project-tags"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline btn-sm" id="project-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="project-save" style="width:auto;">
+          <i class="fas fa-check"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Preview JSON -->
+  <div class="modal-overlay" id="preview-modal">
+    <div class="modal" style="max-width:700px;">
+      <h2><i class="fas fa-eye" style="color:var(--admin-primary)"></i> Preview do data.json</h2>
+      <div class="json-preview">
+        <pre id="json-preview-content"></pre>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline btn-sm" id="copy-json-btn">
+          <i class="fas fa-copy"></i> Copiar JSON
+        </button>
+        <button class="btn btn-primary btn-sm" id="preview-close" style="width:auto;">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-message">Ação realizada com sucesso!</span>
+  </div>
+
+  <script src="security.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
