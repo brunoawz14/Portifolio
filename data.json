@@ -75,11 +75,11 @@
           "color": "#777bb4"
         },
         {
-          "name": "JavaScript",
-          "icon": "fab fa-js",
-          "level": 25,
-          "colorClass": "java-card",
-          "color": "#f7df1e"
+          "name": "Flutter",
+          "icon": "fab fa-flutter",
+          "level": 35,
+          "colorClass": "tech-card",
+          "color": "#02569b"
         }
       ]
     },
@@ -100,6 +100,13 @@
           "level": 70,
           "colorClass": "spring-card",
           "color": "#6db33f"
+        },
+        {
+          "name": "Dart",
+          "icon": "fas fa-code",
+          "level": 31,
+          "colorClass": "tech-card",
+          "color": "#00ff41"
         }
       ]
     },
