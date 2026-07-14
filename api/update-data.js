@@ -2,6 +2,7 @@
 // Recebe o data.json do admin e faz commit automatico no GitHub.
 
 const SITE_URL = 'https://bruno-anjos-dev.vercel.app';
+const SITE_HOST = 'bruno-anjos-dev.vercel.app';
 const MAX_BODY_SIZE = 1024 * 50; // 50KB max
 const ADMIN_SALT = 'b4uno_p0rtf0l10_2026';
 const ADMIN_PASSWORD_HASH = '29b523a8a82d25f43dbe346fb83ca014d27c070c80fac1042d056f0fc01eb230';
@@ -16,11 +17,27 @@ function timingSafeEqual(a, b) {
   return result === 0;
 }
 
+// Verifica se a origin e permitida (producao ou previews do Vercel)
+function isAllowedOrigin(origin) {
+  if (!origin) return false;
+  try {
+    const url = new URL(origin);
+    // Producao exata
+    if (url.host === SITE_HOST) return true;
+    // Previews do Vercel: *.vercel.app
+    if (url.hostname.endsWith('.vercel.app')) return true;
+    // Localhost para dev
+    if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') return true;
+  } catch {}
+  return false;
+}
+
 export default async function handler(req, res) {
   // --- CORS restrito ao proprio dominio ---
   const origin = req.headers.origin || '';
-  const allowed = origin === SITE_URL;
-  res.setHeader('Access-Control-Allow-Origin', allowed ? SITE_URL : '');
+  const allowed = isAllowedOrigin(origin);
+  const allowOrigin = allowed ? origin : '';
+  res.setHeader('Access-Control-Allow-Origin', allowOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('X-Content-Type-Options', 'nosniff');
