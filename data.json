@@ -93,13 +93,6 @@
           "level": 70,
           "colorClass": "spring-card",
           "color": "#6db33f"
-        },
-        {
-          "name": "Dart",
-          "icon": "fas fa-code",
-          "level": 31,
-          "colorClass": "tech-card",
-          "color": "#00ff41"
         }
       ]
     },
