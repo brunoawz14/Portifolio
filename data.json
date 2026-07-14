@@ -23,41 +23,116 @@
     }
   },
   "stats": [
-    { "label": "Projetos", "target": 2, "detail": "No GitHub", "suffix": "" },
-    { "label": "Certificações", "target": 4, "detail": "Alura", "suffix": "" },
-    { "label": "De Estudo", "target": 40, "detail": "Em Spring Boot", "suffix": "h+" },
-    { "label": "Tecnologias", "target": 7, "detail": "No Stack", "suffix": "" }
+    {
+      "label": "Projetos",
+      "target": 2,
+      "detail": "No GitHub",
+      "suffix": ""
+    },
+    {
+      "label": "Certificações",
+      "target": 4,
+      "detail": "Alura",
+      "suffix": ""
+    },
+    {
+      "label": "De Estudo",
+      "target": 40,
+      "detail": "Em Spring Boot",
+      "suffix": "h+"
+    },
+    {
+      "label": "Tecnologias",
+      "target": 7,
+      "detail": "No Stack",
+      "suffix": ""
+    }
   ],
   "technologies": [
     {
       "category": "Front-End",
       "icon": "fas fa-palette",
       "items": [
-        { "name": "HTML", "icon": "fab fa-html5", "level": 80, "colorClass": "html-card", "color": "#e34f26" },
-        { "name": "CSS", "icon": "fab fa-css3-alt", "level": 70, "colorClass": "css-card", "color": "#1572b6" },
-        { "name": "PHP", "icon": "fab fa-php", "level": 25, "colorClass": "php-card", "color": "#777bb4" }
+        {
+          "name": "HTML",
+          "icon": "fab fa-html5",
+          "level": 80,
+          "colorClass": "html-card",
+          "color": "#e34f26"
+        },
+        {
+          "name": "CSS",
+          "icon": "fab fa-css3-alt",
+          "level": 70,
+          "colorClass": "css-card",
+          "color": "#1572b6"
+        },
+        {
+          "name": "PHP",
+          "icon": "fab fa-php",
+          "level": 25,
+          "colorClass": "php-card",
+          "color": "#777bb4"
+        }
       ]
     },
     {
       "category": "Back-End",
       "icon": "fas fa-server",
       "items": [
-        { "name": "Java", "icon": "fab fa-java", "level": 75, "colorClass": "java-card", "color": "#ed8b00" },
-        { "name": "Spring Boot", "icon": "fas fa-leaf", "level": 70, "colorClass": "spring-card", "color": "#6db33f" }
+        {
+          "name": "Java",
+          "icon": "fab fa-java",
+          "level": 75,
+          "colorClass": "java-card",
+          "color": "#ed8b00"
+        },
+        {
+          "name": "Spring Boot",
+          "icon": "fas fa-leaf",
+          "level": 70,
+          "colorClass": "spring-card",
+          "color": "#6db33f"
+        }
       ]
     },
     {
       "category": "Mobile",
       "icon": "fas fa-mobile-alt",
       "items": [
-        { "name": ".NET MAUI", "icon": "fab fa-microsoft", "level": 60, "colorClass": "maui-card", "color": "#512bd4" }
+        {
+          "name": ".NET MAUI",
+          "icon": "fab fa-microsoft",
+          "level": 60,
+          "colorClass": "maui-card",
+          "color": "#512bd4"
+        }
       ]
     },
     {
       "category": "Database",
       "icon": "fas fa-database",
       "items": [
-        { "name": "SQL", "icon": "fas fa-database", "level": 65, "colorClass": "sql-card", "color": "#336791" }
+        {
+          "name": "SQL",
+          "icon": "fas fa-database",
+          "level": 65,
+          "colorClass": "sql-card",
+          "color": "#336791"
+        }
+      ]
+    },
+    {
+      "category": "DevOps",
+      "icon": "fas fa-cogs",
+      "items": [
+        {
+          "name": "Docker",
+          "icon": "fab fa-docker",
+          "level": 50,
+          "colorClass": "tech-card",
+          "color": "#2496ed"
+        }
       ]
     }
   ],
@@ -67,14 +142,23 @@
       "description": "Aplicativo mobile para gerenciamento e cadastro de eventos. Interface responsiva com CRUD completo.",
       "icon": "fas fa-terminal",
       "github": "https://github.com/brunoawz14/MauiAppCadastroEventos",
-      "tags": [".NET MAUI", "C#", "XAML"]
+      "tags": [
+        ".NET MAUI",
+        "C#",
+        "XAML"
+      ]
     },
     {
       "title": "E-Commerce Origin",
       "description": "API RESTful de E-commerce com CRUD completo, autenticação, autorização e documentação com Swagger.",
       "icon": "fas fa-shopping-cart",
       "github": "https://github.com/brunoawz14/Origin-E-commerce",
-      "tags": ["Java", "Spring Boot", "SQL", "Swagger"]
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "SQL",
+        "Swagger"
+      ]
     }
   ],
   "certifications": [
