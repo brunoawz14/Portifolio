@@ -44,7 +44,7 @@
     {
       "label": "Tecnologias",
       "target": 7,
-      "detail": "No Stack",
+      "detail": "Stack",
       "suffix": ""
     }
   ],
@@ -73,6 +73,13 @@
           "level": 25,
           "colorClass": "php-card",
           "color": "#777bb4"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "fab fa-js",
+          "level": 25,
+          "colorClass": "java-card",
+          "color": "#f7df1e"
         }
       ]
     },
